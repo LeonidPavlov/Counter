@@ -2,3 +2,4 @@ hrenorezk_counter.*
 venv
 .pytest_cache
 __pycache__
+*.db
