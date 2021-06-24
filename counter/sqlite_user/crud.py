@@ -4,7 +4,7 @@ import shutil
 from counter.model.countable import Countable
 from counter.model.deal import Deal
 from counter.model.event_time import Event_Time
-
+from counter.aux.error_handling import ACHTUNG
 
 sqlite_dir = 'sqlite3_databases'
 db_files_name = (F'{sqlite_dir}/test.db', F'{sqlite_dir}/sqlite.db',
@@ -41,7 +41,7 @@ def exectution_query(file:str = db_files_name[1],
             conn.close()
             return True
     except (sqlite3.Error, Exception) as err:
-        print( f'PIZDEC-> {__file__} {err} execution query method')
+        ACHTUNG(err, __file__, 'execute query method')
         return False
     finally:
         conn.close()
