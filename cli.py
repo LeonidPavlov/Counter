@@ -22,7 +22,7 @@ if exectution_query(db_files_name[1], create_table_sqlite):
     print('created database ...')
 
 print('starting gui ...')
-App().start()
+# App().start()
 
 try:
     shutil.copy(db_files_name[1], db_files_name[2])

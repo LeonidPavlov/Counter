@@ -7,10 +7,10 @@ def test_instantination() -> None:
     assert(Deal() != None)
 
 def test_default_balance_type() -> None:
-    assert(Deal().balance() == 'debet')
+    assert(Deal().balance() == '+')
 
 def test_non_defalt_balance_type() -> None:
-    assert(Deal(balance=Deal.balance_type[1]).balance() == 'credit')
+    assert(Deal(balance=Deal.balance_type[1]).balance() == '-')
 
 deal = Deal()
 def test_default_type() -> None:

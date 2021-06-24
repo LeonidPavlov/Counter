@@ -3,7 +3,7 @@ from counter.model.event_time import Event_Time
 
 class Deal:
 
-    balance_type = ('debet', 'credit')
+    balance_type = ('+', '-', '=')
 
     def __init__(self,  deal_id: int = 0,
                         event_time: Event_Time = Event_Time(),

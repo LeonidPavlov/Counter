@@ -10,9 +10,16 @@ sqlite_dir = 'sqlite3_databases'
 db_files_name = (F'{sqlite_dir}/test.db', F'{sqlite_dir}/sqlite.db',
                          F'{sqlite_dir}/copy.db')
 
+column_number: dict = { 'DEAL_ID': 0,
+                        'YEAR': 1, 'MONTH': 2, 'DAY':3,
+                        'HOURS': 4,'MINUTES': 5,
+                        'BALANCE': 6, 'TYPE': 7, 'SOURCE': 8,
+                        'CATEGORY': 9, 'PRODUCT': 10,
+                        'COST': 11, 'AMOUNT': 12, 'TOTAL': 13}
+
 create_table_sqlite = F"""
     CREATE TABLE IF NOT EXISTS DEALS(
-        ID INTEGER PRIMARY KEY,
+        DEAL_ID INTEGER PRIMARY KEY,
         YEAR INTEGER NOT NULL,
         MONTH TEXT NOT NULL,
         DAY INTEEGER NOT NULL,
@@ -71,4 +78,4 @@ def insert_query(deal: Deal = Deal()) -> str:
                         """
 
 def delete_by_id_query(id:int = 1) -> str:
-    return F'DELETE FROM DEALS WHERE ID={id}'
+    return F'DELETE FROM DEALS WHERE DEAL_ID={id}'
