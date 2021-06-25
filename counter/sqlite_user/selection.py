@@ -1,4 +1,5 @@
 import sqlite3
+from sqlite3.dbapi2 import Error
 
 from counter.sqlite_user.crud import db_files_name
 from counter.aux.error_handling import ACHTUNG
@@ -18,9 +19,12 @@ def selection_query(file:str = db_files_name[1],
     finally:
         conn.close()
 
-def set_from_column(column_number:int = 0) -> set:
-    list_of_tuples:list = selection_query(db_files_name[0])
+def set_from_column(column_number:int = 0, file = db_files_name[1]) -> set:
+    list_of_tuples:list = selection_query(file)
     list_from_column:list = []
-    for item in list_of_tuples:
-        list_from_column.append( item[column_number] )
+    try:
+        for item in list_of_tuples:
+            list_from_column.append( item[column_number] )
+    except (sqlite3.Error, Exception) as err:
+        ACHTUNG(err, __file__, 'set_from_column method')
     return set(list_from_column)

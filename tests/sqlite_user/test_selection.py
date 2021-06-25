@@ -42,17 +42,23 @@ d10 = Deal(0,Event_Time(2021,3, 15),Countable(3, 5, 15),Deal.balance_type[0],
 query = (d1, d2, d3, d4, d5, d6, d7, d8, d9, d10)
 
 def test_insertion() -> None:
-    exectution_query(db_files_name[0], create_table_sqlite)
+    exectution_query(file = db_files_name[0], 
+                        sql_query = create_table_sqlite)
     for j in query:
         assert( exectution_query(db_files_name[0],insert_query(j)) == True )
 
 
 def test_all_selection() -> None:
     hren: list = {} 
-    hren = selection.selection_query(db_files_name[0])
+    hren = selection.selection_query(file = db_files_name[0])
     assert (len(hren) == 10)
 
-# NEED TO TESTING SET FROM COLUMN
+def test_set_from_column() -> None:
+    result = (10, 4, 2, 3, 1, 1, 3, 3, 3, 2, 3, 1, 1, 1)
+    for j in range( len(result) ):
+        assert( len(selection.set_from_column(column_number=j,
+                                file = db_files_name[0])) == result[j] )    
+
 
 def test_remove_db() -> None:
     os.system(f'rm {db_files_name[0]}')

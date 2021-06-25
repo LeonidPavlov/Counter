@@ -5,34 +5,28 @@ from counter.model.countable import Countable
 from counter.model.deal import Deal
 from counter.model.event_time import Event_Time
 from counter.aux.error_handling import ACHTUNG
+from counter.model.index import Table_Name, Fields as f
 
 sqlite_dir = 'sqlite3_databases'
 db_files_name = (F'{sqlite_dir}/test.db', F'{sqlite_dir}/sqlite.db',
                          F'{sqlite_dir}/copy.db')
 
-column_number: dict = { 'DEAL_ID': 0,
-                        'YEAR': 1, 'MONTH': 2, 'DAY':3,
-                        'HOURS': 4,'MINUTES': 5,
-                        'BALANCE': 6, 'TYPE': 7, 'SOURCE': 8,
-                        'CATEGORY': 9, 'PRODUCT': 10,
-                        'COST': 11, 'AMOUNT': 12, 'TOTAL': 13}
-
 create_table_sqlite = F"""
-    CREATE TABLE IF NOT EXISTS DEALS(
-        DEAL_ID INTEGER PRIMARY KEY,
-        YEAR INTEGER NOT NULL,
-        MONTH TEXT NOT NULL,
-        DAY INTEEGER NOT NULL,
-        HOURS INTEGER NOT NULL,
-        MINUTES INTEGER NOT NULL,
-        BALANCE TEXT NOT NULL,
-        TYPE TEXT NOT NULL,
-        SOURCE TEXT NOT NULL,
-        CATEGORY TEXT NOT NULL,
-        PRODUCT TEXT NOT NULL,
-        COST REAL NOT NULL,
-        AMOUNT REAL NOT NULL,
-        TOTAL REAL NOT NULL
+    CREATE TABLE IF NOT EXISTS {Table_Name.deals.value}(
+        {f.id.value} INTEGER PRIMARY KEY,
+        {f.year.value} INTEGER NOT NULL,
+        {f.month.value} TEXT NOT NULL,
+        {f.day.value} INTEEGER NOT NULL,
+        {f.hours.value} INTEGER NOT NULL,
+        {f.minutes.value} INTEGER NOT NULL,
+        {f.balance.value} TEXT NOT NULL,
+        {f.type.value} TEXT NOT NULL,
+        {f.source.value} TEXT NOT NULL,
+        {f.category.value} TEXT NOT NULL,
+        {f.product.value} TEXT NOT NULL,
+        {f.cost.value} REAL NOT NULL,
+        {f.amount.value} REAL NOT NULL,
+        {f.total.value} REAL NOT NULL
     );
 """
 
@@ -56,9 +50,13 @@ def exectution_query(file:str = db_files_name[1],
 
 def insert_query(deal: Deal = Deal()) -> str:
     return F"""
-                        INSERT INTO DEALS (YEAR, MONTH, DAY, HOURS, MINUTES,
-                            BALANCE, TYPE, SOURCE, CATEGORY, PRODUCT,
-                            COST, AMOUNT, TOTAL)
+                        INSERT INTO {Table_Name.deals.value} 
+                            ({f.year.value}, {f.month.value}, 
+                            {f.day.value}, {f.hours.value}, {f.minutes.value},
+                            {f.balance.value}, {f.type.value}, 
+                            {f.source.value}, {f.category.value}, 
+                            {f.product.value},{f.cost.value}, 
+                            {f.amount.value}, {f.total.value})
                             VALUES 
                             (
                                 {deal.event_time().event_year()},
@@ -78,4 +76,7 @@ def insert_query(deal: Deal = Deal()) -> str:
                         """
 
 def delete_by_id_query(id:int = 1) -> str:
-    return F'DELETE FROM DEALS WHERE DEAL_ID={id}'
+    return F'DELETE FROM {Table_Name.deals.value} WHERE {f.id.value}={id}'
+
+if __name__ == '__main__':
+    print (create_table_sqlite)

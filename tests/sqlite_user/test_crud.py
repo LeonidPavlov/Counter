@@ -1,8 +1,8 @@
 import os
 
 from counter.sqlite_user.crud import delete_by_id_query, exectution_query,\
-                        db_files_name, create_table_sqlite, insert_query,\
-                            column_number
+                        db_files_name, create_table_sqlite, insert_query
+from counter.model.index import column_number
 from counter.model.deal import Deal
 
 testing_create_table_sqlite = F"""
