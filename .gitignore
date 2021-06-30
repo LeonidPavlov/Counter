@@ -5,6 +5,7 @@ __pycache__
 *.db
 dist
 build
-cli.spec
+*.spec
 sqlite3_databases
+*.txt
 

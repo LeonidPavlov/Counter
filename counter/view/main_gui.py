@@ -11,8 +11,8 @@ class App(Tk):
         self.grid()
         self.__main_frame = ttk.Frame(self)
         self.__main_frame.grid(column=0, row=0, sticky=(W, N, E, S))
-        Action_Pane(self.__main_frame)
-        Selection_Pane(self.__main_frame)
+        selection_pane = Selection_Pane(self.__main_frame)
+        Action_Pane(self.__main_frame, selection_pane)
     def start(self):
         self.mainloop()
 

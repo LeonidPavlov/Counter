@@ -70,3 +70,19 @@ column_name: dict = \
         Order.amount.value : Fields.amount.value,
         Order.total.value : Fields.total.value
     }
+
+month_name: dict = \
+    {
+        1: 'january',
+        2: 'fabruary',
+        3: 'march',
+        4: 'april',
+        5: 'may',
+        6: 'june',
+        7: 'july',
+        8: 'august',
+        9: 'september',
+        10: 'october',
+        11: 'november',
+        12: 'december'
+    }
