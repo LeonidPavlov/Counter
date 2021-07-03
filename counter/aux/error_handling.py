@@ -7,5 +7,5 @@ class ACHTUNG:
     def console (self) -> None:
         print(f'ACHTUNG !!! => file -> {self.__file}'
                 f'\n                context -> {self.__context}'
-                f'\n                exception -> {self.___error.__class__}')
+                f'\n                exception -> {self.___error}')
 
