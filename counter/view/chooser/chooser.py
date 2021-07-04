@@ -1,11 +1,10 @@
 import tkinter as tk
-from tkinter.constants import CENTER
 import tkinter.ttk as ttk
 from datetime import datetime as dt
 
-from counter.aux.error_handling import ACHTUNG
 from counter.view.chooser.day import Day
 from counter.view.chooser.month import Month
+from counter.view.chooser.time import Time
 from counter.view.chooser.year import Year
 
 class Chooser:
@@ -15,6 +14,7 @@ class Chooser:
         year = Year(boss, rim, self.__year_change_Listener)
         month = Month(boss, rim, year, self.__month_change_listener)
         self.__day = Day(boss, rim, month)
+        Time(boss, rim, self.__day)
 
     def instance(self) -> ttk.LabelFrame:
         return self.__rim

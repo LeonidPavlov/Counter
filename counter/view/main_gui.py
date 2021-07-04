@@ -37,3 +37,5 @@ class App(Tk):
         self.number = StringVar(value = '№')
         self.day = IntVar(value = dt.now().day)
         self.day_name = StringVar(value = 'monday')
+        self.hours = IntVar(value = dt.now().hour)
+        self.minutes = IntVar(value = dt.now().minute)
