@@ -34,3 +34,6 @@ class App(Tk):
         self.year = IntVar(value = dt.now().year)
         self.month = IntVar(value = dt.now().month)
         self.month_name = StringVar(value = 'month')
+        self.number = StringVar(value = '№')
+        self.day = IntVar(value = dt.now().day)
+        self.day_name = StringVar(value = 'monday')
